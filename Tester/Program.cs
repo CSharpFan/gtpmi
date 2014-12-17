@@ -1,9 +1,6 @@
 ﻿namespace Tester
 {
     using System;
-    using System.IO;
-    using System.Linq;
-    using Newtonsoft.Json;
     using Parser;
 
     internal static class Program
@@ -17,16 +14,29 @@
             //        Console.WriteLine("Id: {0}, Type: {1}, Value: {2}", item.Id, item.Type, item.Value);
             //    }
 
-            StructureParser structureParser = new StructureParser(@"D:\Personal\Kristof\Downloads\Takeout\");
+            //DirectoryStructureParser structureParser = new DirectoryStructureParser(@"D:\d\Downloads\Takeout\");
 
-            var foo = structureParser.FindMetaDataDotJsonFiles();
+            //var foo = structureParser.FindMetaDataDotJsonFiles();
 
-            foreach (var pathName in foo.Where(e=>!e.Contains("- ")))
-            {
-                var bar = JsonConvert.DeserializeObject<MetaData>(string.Join("", File.ReadAllLines(pathName)));
-            }
+            //foreach (var pathName in foo)
+            //{
+            //    var uri = new Uri(pathName);
+            //    var bar = JsonConvert.DeserializeObject<MetaData>(string.Join("", File.ReadAllLines(uri.AbsolutePath)));
+            //}
+
+            GooglePicturesParser pdp = new GooglePicturesParser(@"D:\Personal\Kristof\Downloads\Takeout", @"D:\__GIT");
+
+            pdp.ProgressReporter += PdpProgressReporter;
+
+            pdp.ParseGooglePictures();
+
 
             Console.ReadLine();
+        }
+
+        static void PdpProgressReporter(byte progress)
+        {
+            // handle progress
         }
     }
 }

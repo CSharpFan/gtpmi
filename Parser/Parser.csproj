@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,10 +41,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MetaData.cs" />
+    <Compile Include="GooglePicturesParser.cs" />
+    <Compile Include="MetaDataDotJsonWithLocation.cs" />
+    <Compile Include="MetaDataDotJson\AlbumData.cs" />
+    <Compile Include="MetaDataDotJson\GeoInfo.cs" />
+    <Compile Include="MetaDataDotJson\GeoInfoExif.cs" />
+    <Compile Include="MetaDataDotJson\Media.cs" />
+    <Compile Include="MetaDataDotJson\MetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReaderUtils.cs" />
-    <Compile Include="StructureParser.cs" />
+    <Compile Include="DirectoryStructureParser.cs" />
+    <Compile Include="AlbumParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
