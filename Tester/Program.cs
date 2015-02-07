@@ -5,7 +5,7 @@
 
     internal static class Program
     {
-        private static async void Main(string[] args)
+        private static void Main(string[] args)
         {
             //    var bitmap = new Bitmap(@"D:\Personal\Kristof\Downloads\Takeout\Google Photos\2013-03-23\IMG_20130323_162645.jpg");
 
@@ -26,9 +26,7 @@
 
             GooglePicturesParser pdp = new GooglePicturesParser(@"e:\Takeout", @"e:\TakeoutParsed");
 
-            pdp.ProgressReporter += PdpProgressReporter;
-
-            await pdp.ParseGooglePicturesAsync();
+             pdp.ParseGooglePicturesAsync().Wait();
 
 
             Console.ReadLine();
