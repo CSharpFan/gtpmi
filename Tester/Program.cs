@@ -5,7 +5,7 @@
 
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static async void Main(string[] args)
         {
             //    var bitmap = new Bitmap(@"D:\Personal\Kristof\Downloads\Takeout\Google Photos\2013-03-23\IMG_20130323_162645.jpg");
 
@@ -24,17 +24,17 @@
             //    var bar = JsonConvert.DeserializeObject<MetaData>(string.Join("", File.ReadAllLines(uri.AbsolutePath)));
             //}
 
-            GooglePicturesParser pdp = new GooglePicturesParser(@"D:\Personal\Kristof\Downloads\Takeout", @"D:\__GIT");
+            GooglePicturesParser pdp = new GooglePicturesParser(@"e:\Takeout", @"e:\TakeoutParsed");
 
             pdp.ProgressReporter += PdpProgressReporter;
 
-            pdp.ParseGooglePictures();
+            await pdp.ParseGooglePicturesAsync();
 
 
             Console.ReadLine();
         }
 
-        static void PdpProgressReporter(byte progress)
+        private static void PdpProgressReporter(byte progress)
         {
             // handle progress
         }

@@ -2,15 +2,12 @@
 {
     using System;
     using System.IO;
-
-    public delegate void ProgressReporter(byte /* don't need more */ progress);
+    using System.Threading.Tasks;
 
     public class GooglePicturesParser
     {
         private readonly DirectoryInfo _inputDirectory;
         private readonly DirectoryInfo _outputDirectory;
-
-        public event ProgressReporter ProgressReporter;
 
         public GooglePicturesParser(string inputDirectoryPath, string outputDirectoryPath)
         {
@@ -39,16 +36,14 @@
         }
 
 
-        public async void ParseGooglePictures()
+        public async Task ParseGooglePicturesAsync()
         {
             // read all the json files in the input directory
-
             var directoryStructureParser = new DirectoryStructureParser(this._inputDirectory);
 
             foreach (var metaDataDotJsonTask in directoryStructureParser.FindMetaDataDotJsonFiles())
             {
                 var metaDataDotJson = await metaDataDotJsonTask;
-
 
                 var albumParser = new AlbumParser(metaDataDotJson, this._outputDirectory);
 
